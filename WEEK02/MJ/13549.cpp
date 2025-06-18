@@ -35,10 +35,10 @@ int main(void) {
 					nx = cur * 2;
 					break;
 				case 1:
-					nx = cur + 1;
+					nx = cur - 1;
 					break;
 				case 2:
-					nx = cur - 1;
+					nx = cur + 1;
 					break;
 			}
 			if (nx < 0 || nx > MAX) continue; 
