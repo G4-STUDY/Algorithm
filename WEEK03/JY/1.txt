@@ -4,3 +4,5 @@ C. 계란으로 계란치기 https://www.acmicpc.net/problem/16987
 D. N-Queen https://www.acmicpc.net/problem/9663
 E. 뱀 https://www.acmicpc.net/problem/3190
 F. N과 M (6) https://www.acmicpc.net/problem/15655
+G. A와 B 2 https://www.acmicpc.net/problem/12919
+H. 스도쿠 https://www.acmicpc.net/problem/2580
