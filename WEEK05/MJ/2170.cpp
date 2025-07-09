@@ -1,3 +1,4 @@
+
 #include <stack>
 #include <queue>
 #include <vector>
@@ -16,6 +17,8 @@ int from = 1000000001;
 int to = 1000000001;
 int length, length_sum;
 int main(void) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     cin >> N;
     for (int u = 0; u < N; u++) {
         cin >> x >> y;
