@@ -26,12 +26,16 @@ int main() {
 
         string compact;
         for (int u = 0; u < N; u++) {
-            temp = lower_bound(array_sort.begin(), array_sort.end(),  array_result[u]) - array_sort.begin();
-            compact += to_string(temp);
+            temp = lower_bound(array_sort.begin(), array_sort.end(),  array_result[u]) - array_sort.begin(); // 좌표 압축하기
+            compact += to_string(temp); // 좌표 압축한 결과 ex) 021, 102, 120....를 compact 문자열에 붙이기
         }
-        if (binary_search(multiverse_compact, multiverse_compact + v, compact)) {
+	    
+	// 즉, 두 compact가 같으면 그 둘은 균등한 우주임.
+        if (binary_search(multiverse_compact, multiverse_compact + v, compact)) { 
+	// multiverse_compact에 모든 우주의 좌표 압축된 결과(compact)가 들어있음
             same_universe_cnt += upper_bound(multiverse_compact, multiverse_compact + v, compact) - lower_bound(multiverse_compact, multiverse_compact + v, compact);
-        }
+        // 어떤 compact가 multiverse_compact에 이미 있을 경우 균등한 우주쌍의 개수를 증가시킴.
+	}
         multiverse_compact[v] = compact;
         sort(multiverse_compact, multiverse_compact + v + 1);
     }
