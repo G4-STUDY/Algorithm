@@ -1,6 +1,5 @@
 //백준 15903 카드 합체 놀이
-#include<iostream>
-#include<queue>
+#include<bits/stdc++.h>
 #define ll long long
 using namespace std;
 
