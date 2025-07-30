@@ -37,7 +37,7 @@ int main(){
             en--;  
             current_odds--;
         } 
-        int current_length = (en - st + 1) - K;
+        int current_length = (en - st + 1) - current_odds;
         max_length = max(max_length, current_length);
         pre_st = st;
     }

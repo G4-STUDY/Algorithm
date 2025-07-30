@@ -26,6 +26,7 @@ int main()
     {
         sorted_unique_datas_vector.push_back(data);
     }
+    
     for(int i = 0; i < datas_vector.size(); i++)
     {
         
