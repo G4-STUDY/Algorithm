@@ -6,7 +6,7 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int result = 0;
+    long long result = 0;
     int N; 
     vector<int> ability_vector;
     cin >> N;
