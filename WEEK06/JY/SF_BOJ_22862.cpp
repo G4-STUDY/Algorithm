@@ -30,7 +30,7 @@ int main() {
     while (high < n) {
         // 진행 못함
         if (arr[high] == 1 && cnt >= k) {
-            if (arr[low] == 1) {
+            if (arr[low] == 1) { 
                 cnt--;
             }
             low++;

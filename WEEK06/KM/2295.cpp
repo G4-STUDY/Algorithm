@@ -20,9 +20,7 @@ void combsum(int ex, bool two)
         {
             // 3번째 자연수까지 더하면 MX랑 같아지거나 작아지니까
             if (Mx > (long long)arr[ex] + (long long)arr[i])
-            {
-            }
-            sum[sidx++] = arr[ex] + arr[i];
+                sum[sidx++] = arr[ex] + arr[i];
         }
         else
         {
