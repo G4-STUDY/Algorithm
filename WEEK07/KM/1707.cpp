@@ -1,73 +1,78 @@
-// #include <iostream>
-// #include <vector>
-// #include <queue>
+#include <iostream>
+#include <vector>
+#include <queue>
 
-// using namespace std;
+using namespace std;
 
-// int main()
-// {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(NULL);
-//     int k;
-//     cin >> k;
-//     while (k--)
-//     {
-//         int v, e;
-//         cin >> v >> e;
-//         int visit[20001];
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int k;
+    cin >> k;
+    while (k--)
+    {
+        int v, e;
+        cin >> v >> e;
+        int visit[20001];
 
-//         vector<int> edge[20001];
-//         for (int i = 0; i < e; i++)
-//         {
-//             int a, b;
-//             cin >> a >> b;
-//             edge[a].push_back(b);
-//             edge[b].push_back(a);
-//         }
-//         bool ans = true;
-//         for (int i = 1; i <= v; i++)
-//         {
-//             if(!ans)break;
-//             if (visit[i])continue;
-//             queue<pair<int, bool>> q;
-//             visit[i] = 1;
-//             q.push({i, false});
-//             while (!q.empty() && ans)
-//             {
-//                 int cur = q.front().first;
-//                 bool tmp = q.front().second;
-//                 q.pop();
-//                 for (int next : edge[cur])
-//                 {
-//                     bool nexttmp = !tmp;
-//                     if (visit[next])
-//                     {
-//                         if (visit[next] != 1 + nexttmp)
-//                         {
-//                             // 이미 방문했는데 다른집합에가야돼?
-//                             ans = false;
-//                             break;
-//                         }
-//                     }
-//                     else
-//                     {
-//                         visit[next] = 1 + nexttmp;
-//                         q.push({next, nexttmp});
-//                     }
-//                 }
-//             }
-//         }
-//         if (ans)
-//         {
-//             cout<<"YES\n";
-//         }
-//         else
-//         {
-//             cout<<"NO\n";
-//         }
-//     }
-//     return 0;
-// }
+        vector<int> edge[20001];
+        //초기화 안해서 틀렸었음..
+        for(int i=1;i<=v;i++){
+            edge[i].clear();
+            visit[i]=false;
+        }
+        for (int i = 0; i < e; i++)
+        {
+            int a, b;
+            cin >> a >> b;
+            edge[a].push_back(b);
+            edge[b].push_back(a);
+        }
+        bool ans = true;
+        for (int i = 1; i <= v; i++)
+        {
+            if(!ans)break;
+            if (visit[i])continue;
+            queue<pair<int, bool>> q;
+            visit[i] = 1;
+            q.push({i, false});
+            while (!q.empty() && ans)
+            {
+                int cur = q.front().first;
+                bool tmp = q.front().second;
+                q.pop();
+                for (int next : edge[cur])
+                {
+                    bool nexttmp = !tmp;
+                    if (visit[next])
+                    {
+                        if (visit[next] != 1 + nexttmp)
+                        {
+                            // 이미 방문했는데 다른집합에가야돼?
+                            ans = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        visit[next] = 1 + nexttmp;
+                        q.push({next, nexttmp});
+                    }
+                }
+            }
+        }
+        if (ans)
+        {
+            cout<<"YES\n";
+        }
+        else
+        {
+            cout<<"NO\n";
+        }
+    }
+    return 0;
+}
 /*
 ...
 이분그래프 조건?
@@ -125,77 +130,11 @@
 1-2
 |
 5-4-3
+
+변수 종류	저장 영역	초기화 여부	설명
+전역 변수	데이터 영역	✅ 자동 0 초기화	프로그램 시작 시 초기화
+static 변수	데이터 영역	✅ 자동 0 초기화	함수 안에서도 동일
+지역 변수	스택	❌ 자동 초기화 안됨	값은 미정 (undefined behavior)
+
+
 */
-
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int k;
-    cin >> k;
-    while (k--)
-    {
-        int v, e;
-        cin >> v >> e;
-        bool visit[20001];
-        bool group[20001];
-        vector<int> edge[20001];
-        for (int i = 0; i < e; i++)
-        {
-            int a, b;
-            cin >> a >> b;
-            edge[a].push_back(b);
-            edge[b].push_back(a);
-        }
-        bool ans = true;
-        for (int i = 1; i <= v; i++)
-        {
-            if(!ans)break;
-            if (visit[i])continue;
-            queue<pair<int, bool>> q;
-            visit[i] = true;
-            group[i] = false;
-            q.push({i, false});
-            while (!q.empty() && ans)
-            {
-                int cur = q.front().first;
-                bool tmp = q.front().second;
-                q.pop();
-                for (int next : edge[cur])
-                {
-                    bool nexttmp = !tmp;
-                    if (visit[next])
-                    {
-                        if (group[next] != nexttmp)
-                        {
-                            // 이미 방문했는데 다른집합에가야돼?
-                            ans = false;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        visit[next] =true;
-                        group[next] =nexttmp;
-                        q.push({next, nexttmp});
-                    }
-                }
-            }
-        }
-        if (ans)
-        {
-            cout<<"YES\n";
-        }
-        else
-        {
-            cout<<"NO\n";
-        }
-    }
-    return 0;
-}
