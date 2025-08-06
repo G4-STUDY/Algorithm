@@ -14,8 +14,8 @@ int main()
     {
         int v, e;
         cin >> v >> e;
-        int visit[20001];
 
+        int visit[20001];
         vector<int> edge[20001];
         //초기화 안해서 틀렸었음..
         for(int i=1;i<=v;i++){

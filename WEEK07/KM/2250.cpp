@@ -27,6 +27,7 @@ void dfs(int cur,int depth){
 
 int main()
 {
+    
     int n;
     cin>>n;
     for(int i=1;i<=n;i++){
