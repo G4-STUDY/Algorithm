@@ -14,7 +14,7 @@ int main(void) {
     for (int u = 0; u < M; u++) {
         cin >> a >> b;
         adj1[a].push_back(b); // a > b 인 경우를 adj1에 저장
-        adj2[b].push_back(a); // b > a 인 경우를 adj2에 저장
+        adj2[b].push_back(a); // b < a 인 경우를 adj2에 저장
     }
     for (int u = 1; u <= N; u++) { // adj1 그래프에서 각 원소를 시작점으로 BFS
         queue <int> q;
@@ -32,7 +32,7 @@ int main(void) {
             }
         }
     }
-    for (int u = 1; u <= N; u++) { // adj1 그래프에서 각 원소를 시작점으로 BFS
+    for (int u = 1; u <= N; u++) { // adj2 그래프에서 각 원소를 시작점으로 BFS
         queue <int> q;
         int vis[103] = { 0 };
         q.push(u);
