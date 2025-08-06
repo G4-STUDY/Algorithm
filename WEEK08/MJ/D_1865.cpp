@@ -19,12 +19,12 @@ int main(void) {
         adj.push_back({ { 0, 0 }, 0 });
         for (int u = 0; u < M; u++) {
             cin >> S >> E >> T;
-            adj.push_back({ { S, E }, T });
-            adj.push_back({ { E, S }, T });
+            adj.push_back({ { S, E }, T }); // 도로는 방향이 없으므로
+            adj.push_back({ { E, S }, T }); // S->E 방향과 E->S 방향 모두 adj에 저장
         }
         for (int u = 0; u < W; u++) {
             cin >> S >> E >> T;
-            adj.push_back({ { S, E }, -T });
+            adj.push_back({ { S, E }, -T }); // 웜홀은 시간이 거꾸로 가므로 -T값을 adj에 저장
         }
         fill(dist, dist + N + 1, INF);
         dist[1] = 0;
@@ -43,7 +43,7 @@ int main(void) {
             int nxt_idx = adj[v].X.Y;
             int nxt_dist = adj[v].Y;
             if (dist[nxt_idx] > dist[cur_idx] + nxt_dist) {
-                flag = true;
+                flag = true;  // 음의 순환이 있으면 flag를 true로 갱신
                 break;
             }
         }
