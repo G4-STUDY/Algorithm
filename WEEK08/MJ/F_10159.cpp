@@ -13,10 +13,10 @@ int main(void) {
     cin >> N >> M;
     for (int u = 0; u < M; u++) {
         cin >> a >> b;
-        adj1[a].push_back(b);
-        adj2[b].push_back(a);
+        adj1[a].push_back(b); // a > b 인 경우를 adj1에 저장
+        adj2[b].push_back(a); // b > a 인 경우를 adj2에 저장
     }
-    for (int u = 1; u <= N; u++) {
+    for (int u = 1; u <= N; u++) { // adj1 그래프에서 각 원소를 시작점으로 BFS
         queue <int> q;
         int vis[103] = { 0 };
         q.push(u);
@@ -32,7 +32,7 @@ int main(void) {
             }
         }
     }
-    for (int u = 1; u <= N; u++) {
+    for (int u = 1; u <= N; u++) { // adj1 그래프에서 각 원소를 시작점으로 BFS
         queue <int> q;
         int vis[103] = { 0 };
         q.push(u);
@@ -48,6 +48,7 @@ int main(void) {
             }
         }
     }
+    // result 배열에 각 물건(인덱스)과 비교 결과를 알 수 있는 물건의 개수가 저장됨 
     for (int u = 1; u <= N; u++) cout << N - result[u] - 1 << '\n';
     return 0;
 }
