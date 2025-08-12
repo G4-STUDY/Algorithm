@@ -72,7 +72,7 @@ int main(){
     {
         for(int i = 2; i <= n; i++)
         {
-            if(cost[i] == INF) cout << -1;
+            if(cost[i] == INF) cout << -1<<'\n';
             else cout << cost[i] << '\n';
         }
     }
