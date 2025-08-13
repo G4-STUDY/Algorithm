@@ -29,6 +29,7 @@ int main(void) {
         cin >> g;
         input.push(g);
     }
+    
     for (int u = 0; u < P; u++) {
         g = input.front();
         input.pop();
