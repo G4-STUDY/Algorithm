@@ -33,6 +33,7 @@ int main(void) {
                 int cur_idx = adj[v].X.X;
                 int nxt_idx = adj[v].X.Y;
                 int nxt_dist = adj[v].Y;
+                if(dist[cur_idx]==INF) continue;
                 if (dist[nxt_idx] > dist[cur_idx] + nxt_dist) {
                     dist[nxt_idx] = dist[cur_idx] + nxt_dist;
                 }
@@ -42,6 +43,7 @@ int main(void) {
             int cur_idx = adj[v].X.X;
             int nxt_idx = adj[v].X.Y;
             int nxt_dist = adj[v].Y;
+            if(dist[cur_idx]==INF) continue;
             if (dist[nxt_idx] > dist[cur_idx] + nxt_dist) {
                 flag = true;  // 음의 순환이 있으면 flag를 true로 갱신
                 break;
