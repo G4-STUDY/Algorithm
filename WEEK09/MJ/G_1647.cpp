@@ -41,7 +41,9 @@ int main(void) {
         if (Find(curr_node_1) == Find(curr_node_2)) continue;
         Union(curr_node_1, curr_node_2);
         cnt++;
-        if (cnt == N - 1) {
+        if (cnt == N - 1) { // 이때 하나의 최소신장트리가 완성됨.
+                            // 그때 트리에 추가하는 노드를 추가하지 않으므로서 
+                            // 마을을 두개로 나눔.
             cout << cost;
             return 0;
         }
