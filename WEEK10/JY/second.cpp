@@ -2,6 +2,8 @@
 #include <limits>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <queue>
 using namespace std;
 
 void readInput(string &base_name, vector<string> &process, vector<int> &time_taken,
@@ -10,12 +12,54 @@ void readInput(string &base_name, vector<string> &process, vector<int> &time_tak
 void printInput(const string &base_name, const vector<string> &process,
                 const vector<int> &time_taken, const string &target_name, int target_qty);
 
+priority_queue<pair<int, int> > pq;
+
+void func(string target, int qty, int limit, string base_name, vector<string> process, vector<int> time_taken) {
+
+    if (target == base_name) {
+        pq.push(make_pair(limit, qty));
+        return;
+    }
+
+    for (int i=process.size()-1; i>=0; i--) {
+        string info = process[i];
+        vector<string> tokens;
+        string token;
+
+        // 문자열 자르기
+        istringstream iss(info);
+        while (iss >> token) {
+            tokens.push_back(token);
+        }
+
+        // target 아니면 넘어감
+        if (tokens[tokens.size()-2].compare(target) != 0) continue;
+
+        for (int j=0; j<tokens.size()-2; j+=2) {
+            func(tokens[j], qty * stoi(tokens[j+1]), limit + time_taken[i], base_name, process, time_taken);
+        }
+
+    }
+
+}
+
 
 int solution(string base_name, vector<string> process, vector<int> time_taken,
                 string target_name, int target_qty)
 {
+    func(target_name, target_qty, 0, base_name, process, time_taken);
+
     int answer = 0;
-    // 여기에 코드 구현
+    int sum = 0;
+    while (!pq.empty()) {
+        int x = pq.top().first;
+        int y = pq.top().second;
+        //cout << x << " " << y << "\n";
+        sum += y;
+        answer = max(answer, x + sum);
+        pq.pop();
+    }
+
     return answer;
 }
 
@@ -83,7 +127,7 @@ void printInput(const string &base_name, const vector<string> &process,
 2
 iron_ore
 iron_ore 1 iron_ingot 1
-iron_ingot 3 iron_plate 1
+iron_ingot 2 iron_plate 1
 3
 2
 iron_plate
@@ -121,4 +165,18 @@ d 1 a 3 e 1
 e
 1
 
+ */
+
+
+/**
+* 3
+a
+a 1 b 1
+a 100 c 1
+b 1 c 1 d 1
+100
+1
+5
+d
+1
  */
