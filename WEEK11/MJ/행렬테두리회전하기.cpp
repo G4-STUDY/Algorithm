@@ -9,25 +9,25 @@ int Rotate(int x1, int y1, int x2, int y2) {
     int min = 10001;
     int temp1 = map[x1][y1];
     int temp2 = 0;
-    for (int w = y1; w < y2; w++) {
+    for (int w = y1; w < y2; w++) {  // 오른쪽 이동
         if (min > temp1) min = temp1;
         temp2 = map[x1][w + 1];
         map[x1][w + 1] = temp1;
         temp1 = temp2;
     }
-    for (int w = x1; w < x2; w++) {
+    for (int w = x1; w < x2; w++) {  // 아래쪽 이동
         if (min > temp1) min = temp1;
         temp2 = map[w + 1][y2];
         map[w + 1][y2] = temp1;
         temp1 = temp2;
     }
-    for (int w = y2; w > y1; w--) {
+    for (int w = y2; w > y1; w--) {  // 왼쪽 이동
         if (min > temp1) min = temp1;
         temp2 = map[x2][w - 1];
         map[x2][w - 1] = temp1;
         temp1 = temp2;
     }
-    for (int w = x2; w > x1; w--) {
+    for (int w = x2; w > x1; w--) {  // 위쪽 이동
         if (min > temp1) min = temp1;
         temp2 = map[w - 1][y1];
         map[w - 1][y1] = temp1;
