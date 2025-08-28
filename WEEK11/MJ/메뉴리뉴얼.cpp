@@ -36,12 +36,15 @@ vector<string> solution(vector<string> orders, vector<int> course) {
     for (int i = 0; i < course.size(); i++) {
         max_cnt = 0;
         for (int j = 0; j < orders.size(); j++) {
-            Recul(orders[j], orders[j].size(), course[i], 0, 0);
+            Recul(orders[j], orders[j].size(), course[i], 0, 0); // 이 함수가 한번 실행되면 한명의 손님이 주문한 메뉴 조합에서
+                                                                 // course[i]개만큼의 메뉴를 뽑은 모든 경우의 수를 map에 저장함
+                                                        
         }
-        cout << max_cnt;
+        // 루프가 끝나면 모든 조합의 주문 횟수가 map에 저장됨
+        // course[i] 별로 가장 많이 주문한 횟수값이 max_cnt에 저장됨
         for (auto iter = m.begin(); iter != m.end(); ++iter) {
+            // 메뉴 조합 별 주문 횟수가 max_cnt와 같을 경우, 그 조합을 answer 배열에 추가함
             if (max_cnt > 1 && iter->second == max_cnt && iter->first.size() == course[i]) answer.push_back(iter->first);
-            //cout << "key : " << iter->first << " value : " << iter->second << '\n';
         }
     }
     sort(answer.begin(), answer.end());
