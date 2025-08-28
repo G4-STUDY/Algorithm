@@ -13,8 +13,9 @@ int solution(int n, vector<int> tops) {
         else arr[1] = 4*arr[0] - 1;
     }
     for (int u = 2; u < n; u++) {
-        if (tops[u] == 1) arr[u] = (4*arr[u-1] - arr[u-2]) % 10007;
-        else arr[u] = (3*arr[u-1] - arr[u-2]) % 10007;
+                                                                    // a(n)은 사다리꼴 윗변 길이 n에서의 방법 가짓수를 의미함
+        if (tops[u] == 1) arr[u] = (4*arr[u-1] - arr[u-2]) % 10007; // 사다리꼴 윗변에 삼각형이 있는 경우 a(n) = 4a(n-1) - a(n-2)
+        else arr[u] = (3*arr[u-1] - arr[u-2]) % 10007;              // 사다리꼴 윗변에 삼각형이 없는 경우 a(n) = 3a(n-1) - a(n-2)
     }
     int answer = 0;
     answer = arr[n - 1];
