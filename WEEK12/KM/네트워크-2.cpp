@@ -4,14 +4,15 @@
 using namespace std;
 
 vector<vector<int>> edge;
+
 bool visit[201];
 
 void dfs(int cur){
     for(int next=0;next<edge[cur].size();next++){
-        if(edge[cur][next]==0)continue;
-        if(visit[next])continue;
+        if(edge[cur][next]==0)continue;//간선이없으면
+        if(visit[next])continue;//방문한노드면
         visit[next]=true;
-        dfs(next);
+        dfs(next);//탐색
     }
 }
 
@@ -26,3 +27,7 @@ int solution(int n, vector<vector<int>> computers) {
     }
     return answer;
 }
+
+/*
+한번 완탐할때마다 네트워크 하나임
+*/

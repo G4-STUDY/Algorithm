@@ -23,12 +23,12 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
         string gens=genres[i];
         int play=plays[i];
         if(!genrevisit[gens])//처음나온장르면
-        {
+        {   //장르 string to int
             genrevisit[gens]=true;
             genremap[gens]=ng;
             ng++;
         }
-        int gen=genremap[gens];
+        int gen=genremap[gens];//gen = 장르int
         song[gen].push_back({play,i});//노래추가
         genre[gen].first+=play;
         genre[gen].second=gen;
@@ -37,11 +37,11 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     sort(genre,genre+ng,cmp);
     for(int i=0;i<ng;i++){
         int gen=genre[i].second;
-        sort(song[gen].begin(),song[gen].end(),cmp);
+        sort(song[gen].begin(),song[gen].end(),cmp);//gen 장르의 노래 정렬 play순
         bool two=false;
-        for(int j=0;j<song[gen].size();j++){
+        for(int j=0;j<song[gen].size();j++){//size까지 해야되는이유 1개짜리도 있으니까 ㅇㅇ.;;
             answer.push_back(song[gen][j].second);
-            if(two)break;
+            if(two)break;//이미 두개출력했으면 break;
             two=true;
         }
     }

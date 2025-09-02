@@ -11,10 +11,11 @@ int solution(vector<vector<int>> routes) {
     for(vector<int> v:routes){
         route.push_back({v[1],v[0]});//끝점,시작점
     }
-    sort(route.begin(),route.end());
+    sort(route.begin(),route.end());//정렬
     int idx=-30001;
     for(pair<int,int> p:route){
-        if(idx<p.second){
+        if(idx<p.second){//시작지점이 지금 지점으로 커버되나?
+            //안되면 이거의 끝점에하나 설치
             answer++;
             idx=p.first;
         }
@@ -23,10 +24,12 @@ int solution(vector<vector<int>> routes) {
 }
 
 /*
-일단 시작점 기준으로 정렬하고
-제일끝 지점에 하나설치 
-그다음꺼가 설치지점보다 멀면 하나더 추가..
-[[-20, -15], [-19, -18], [-15, -5]] 이경우 틀림
+
+x일단 시작점 기준으로 정렬하고
+x제일끝 지점에 하나설치 
+x그다음꺼가 설치지점보다 멀면 하나더 추가..
+x[[-20, -15], [-19, -18], [-15, -5]] 이경우 틀림
+
 끝점 기준으로 정렬하고
 끝점에 설치하고 다음꺼 시작지점이 이 끝점보다 가까운지 체크
 //끝점기준으로 정렬했으니까 시작지점만 체크하면 커버됌
