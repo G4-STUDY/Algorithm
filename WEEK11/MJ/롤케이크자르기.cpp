@@ -13,7 +13,7 @@ int solution(vector<int> topping) {
     for (int u = 0; u < topping.size(); u++) {
         m1[topping[u]]++;
     }
-
+    
     for (int u = 0; u < topping.size(); u++) {
         m2[topping[u]]++;
         m1[topping[u]]--;

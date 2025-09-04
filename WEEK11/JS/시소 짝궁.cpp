@@ -12,8 +12,8 @@ long long solution(vector<int> weights) {
     for(int i = 0; i < weights.size() - 1; i++) 
     {
         int cur_weight = weights[i];
-        auto upper_it
-        auto lower_it
+        auto upper_it;
+        auto lower_it;
             
         if(cur_weight % 3 == 0)
         {
