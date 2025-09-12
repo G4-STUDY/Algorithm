@@ -1,52 +1,72 @@
 #include <iostream>
 #include <vector>
-#include <queue>
+
 using namespace std;
-vector<int> arr;
 
 int solution(int n, vector<int> stations, int w)
 {
     int answer = 0;
-    int dist=2*w+1;
-    //전처리
-    for(int station:stations)
-    {
-        arr.push_back(station-w);
+
+    vector<int> dq;
+    dq.push_back(0);
+    for(int station : stations){
+        if(station - w < 1 && dq[dq.size()-2] != 1) dq.push_back(1);
+        else if(dq[dq.size()-1] >= station - w) dq.pop_back();
+        else dq.push_back(station-w);
+
+        if(station + w > n) dq.push_back(n);
+        else dq.push_back(station+w);
     }
-    
-    //시작지점 1에 설치할지 판단하기
-    int idx=1;
-    //if(arr[0]<idx)idx=arr[0]; 해서 안됐음 시작점이 1인경우도 정답증가시켰었음..
-    if(arr[0]<=idx)idx=arr[0];
-    else{
-        answer++;
+    dq.push_back(n+1);
+
+    int val = (2*w) + 1;
+    for(int i=0; i<dq.size()-1; i+=2){
+        int a = dq[i];
+        int b = dq[i+1];
+
+        //cout << a << " " << b << "\n";
+        int cnt = b - a - 1;
+
+        if(cnt % val == 0) answer += cnt / val;
+        else answer += (cnt / val) + 1;
     }
-    
-    //배열탐색
-    for(int cur:arr)
-    {
-        if(idx+dist>=cur){//이미 있는걸로 커버가되면
-            idx=cur;
-        }
-        else{//안되면
-            answer+=(cur-idx-dist)/dist;
-            if(((cur-idx)%dist)==0);
-            else answer++;
-            idx=cur;
-        }
-    }
-    //n까지 다채웠으면 return
-    if(idx+dist>n) return answer;
-    
-    //n까지 매우기
-    answer+=(n+1-idx-dist)/dist;
-    if(((n+1-idx)%dist)==0);
-    else answer++;
-    
+
     return answer;
 }
 
-/*
-그냥 비어있으면 채우면 되는거아닌가 
-전파는 오른쪽으로 쏜다고 생각하고 설치하자
+/**
+처음에 설치된데 제외 나머지 다 커버하려면 기지국 최소 몇개 더 필요한가
+n이 2억개..
+
+빈칸의 개수를 센다
+빈칸/(2*w+1) 이게 딱 안나눠 떨어지면 + 1
+
+배열...에 저장 안해도 될 것 같은데
+이어지는 숫자 처음 끝만 저장해도?
+
+station - w, station + w 만 저장
+0 3 5 10 11 n+1
+
+3 - 0 - 1; 2
+10 - 5 - 1; 4
+
+0 7 11 17
+
+7-0-1 // 6
+16 - 11
+
+겹치는 경우를 고려못했다...
+
+
+3,4,11에 설치되어 있으면?
+
+0 1 1 1 1 0 0 0 0 1 1
+
+0 2 5 10 11 12
+근데 지금 로직으로는
+
+0 2 4 3 5 10 11 12
+
+앞에 자기 보다 큰게 있으면 둘다 지워버려?
+
 */
