@@ -13,6 +13,7 @@ bool cmp2(pair<int, int> a, pair<int, int> b){
     if(a.first != b.first) return a.first > b.first;
     else return a.second < b.second; //재생 횟수가 같은 노래 중 고유 번호 낮은 노래 먼저 수록
 }
+
 vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
     map<string, int> genre_num;
@@ -39,6 +40,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
         genres_sorted.push_back(tmp);
     }
     sort(genres_sorted.begin(), genres_sorted.end(), cmp1);
+
     //재생 수 높은 장르부터 수록곡 선정
     for(pair<int, string> p : genres_sorted)
     {

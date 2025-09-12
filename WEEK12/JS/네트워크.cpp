@@ -2,6 +2,7 @@
 #include <vector>
 
 using namespace std;
+
 void dfs(int cur, int (&vis)[200], vector<int> (&adj)[200])
 {
     for(int nxt : adj[cur])
