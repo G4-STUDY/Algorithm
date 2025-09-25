@@ -6,7 +6,6 @@ using namespace std;
 int solution(int n, vector<int> stations, int w)
 {
     int answer = 0;
-
     vector<int> dq;
     dq.push_back(0);
     for(int station : stations){
