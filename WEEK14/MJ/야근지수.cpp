@@ -16,7 +16,7 @@ long long solution(int n, vector<int> works) {
     
     int temp = 0;
     for (int u = 0; u < n; u++) {
-        if (pq.top() == 0) break;
+        if (pq.top() == 0) break;  // ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
         temp = pq.top();
         pq.pop();
         temp--;
