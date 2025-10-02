@@ -11,9 +11,9 @@ int idx=0;
 
 long long calc(int time){
     long long cnt=arr.size();
-    //long long cnt=3 하....
     for(int i=0;i<arr.size();i++){
         cnt+=time/arr[i];
+        
     }
     return cnt;
 }
@@ -64,4 +64,19 @@ int solution(int n, vector<int> cores) {
     }
     return answer+1;
 }
-//test
+/*
+10000 * 50000
+시간으로하면 5억넘을지도..
+5억이긴한데
+이분탐색하고 또 찾으면 되는거아닌가
+time%cores[i]로 찾으면될거같은데
+아.. 마지막으로 작업들어간 코어만 찾으면되는거네...
+
+    1   2   3
+0   1   1   1
+1   2   1   1
+2   3   2   1
+3   
+4
+
+*/
