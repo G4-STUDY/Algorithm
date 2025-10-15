@@ -15,7 +15,8 @@ vector<int> solution(vector<int> cards, int n, vector<string> command){
     for (int u = nn + 1; u <= n; u++) q_Hooo.push(cards[u-1]);
 
     for (int u = 0; u < command.size(); u++) {
-        if (command[u] == "flip"){
+        // ----------------------------------------------------------------
+        if (command[u] == "flip"){                 // flip 하기
             vector <int> temp;
             for (int v = 1; v <= nn; v++) {
                 temp.push_back(q_Hooo.front());
@@ -29,7 +30,10 @@ vector<int> solution(vector<int> cards, int n, vector<string> command){
             for (int v = 1; v <= nn; v++) q_Sang.push(temp[v-1]);
             for (int v = nn + 1; v <= n; v++) q_Hooo.push(temp[v-1]);       
         }
-        else {
+        // ----------------------------------------------------------------
+            
+        // ----------------------------------------------------------------    
+        else {                                     // suffle 하기
             vector <int> temp;
             for (int v = 1; v <= nn; v++) {
                 temp.push_back(q_Sang.front());
@@ -41,6 +45,7 @@ vector<int> solution(vector<int> cards, int n, vector<string> command){
             for (int v = 1; v <= nn; v++) q_Sang.push(temp[v-1]);
             for (int v = nn + 1; v <= n; v++) q_Hooo.push(temp[v-1]);                 
         }
+        // ----------------------------------------------------------------
     }
   
     // 상반부에 후반부 더해서 result 구하기
